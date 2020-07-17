@@ -1,0 +1,28 @@
+version: "3"
+services: 
+    api-dev: 
+        network_mode: "host" # linux
+        build:
+            context: .
+            dockerfile: api/docker/dev.dockerfile
+        volumes: 
+            - ./:/home/dsdit
+        environment: 
+            - APP_PORT=${APP_PORT}
+            - ENV=delevopment
+            - PG_HOST=${D_PG_HOST}
+            - PG_PORT=${D_PG_PORT}
+            - PG_DATABASE=${D_PG_DATABASE}
+            - PG_USERNAME=${D_PG_USERNAME}
+            - PG_PASSWORD=${D_PG_PASSWORD}
+            - REDIS_HOST=${D_REDIS_HOST}
+            - REDIS_PORT=${D_REDIS_PORT}
+            - REDIS_PASSWORD=
+            - SESSION_SECRET=${D_SESSION_SECRET}
+            - SESSION_NAME=${D_SESSION_NAME}
+            - SESSION_TIMEOUT=${D_SESSION_TIMEOUT} 
+        ports: 
+            - ${APP_PORT}:${APP_PORT}
+
+
+

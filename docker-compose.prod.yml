@@ -1,0 +1,27 @@
+version: "3"
+services: 
+    api-prod: 
+        network_mode: "host" # linux
+        restart: always
+        build:
+            context: .
+            dockerfile: api/docker/prod.dockerfile
+        environment: 
+            - APP_PORT=${APP_PORT}
+            - ENV=production
+            - PG_HOST=${P_PG_HOST}
+            - PG_PORT=${P_PG_PORT}
+            - PG_DATABASE=${P_PG_DATABASE}
+            - PG_USERNAME=${P_PG_USERNAME}
+            - PG_PASSWORD=${P_PG_PASSWORD}
+            - REDIS_HOST=${P_REDIS_HOST}
+            - REDIS_PORT=${P_REDIS_PORT}
+            - REDIS_PASSWORD=
+            - SESSION_SECRET=${P_SESSION_SECRET}
+            - SESSION_NAME=${P_SESSION_NAME}
+            - SESSION_TIMEOUT=${P_SESSION_TIMEOUT} 
+        ports: 
+            - ${APP_PORT}:${APP_PORT}
+
+
+
